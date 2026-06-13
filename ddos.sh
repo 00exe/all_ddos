@@ -2,6 +2,8 @@
 echo "run this with sudo!"
 sudo apt install figlet
 clear
+sudo apt install python3
+clear
 cd /home/desktop/ddos_files
 echo "TCP-1"
 echo "ALL-2"
