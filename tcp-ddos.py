@@ -14,8 +14,8 @@ print("Coded By : 00exe")
 print("")
 
 ip = input("IP Target : ")
-port = int(input("Port       : "))
-thread_sayisi = int(input("Thread (Öneri: 5 veya 10): "))
+port = int(input("Port      : "))
+thread_sayisi = int(input("Threads (Recommended: 5 or 10): "))
 
 os.system("clear")
 print("\033[93m")
@@ -40,7 +40,7 @@ def saldiri_fonksiyonu():
             lock.acquire()
             sent += 1
             if sent % 100 == 0:
-                print(f"\033[92m[+] Toplam {sent} istek başarıyla gönderildi.\033[0m")
+                print(f"\033[92m[+] Total {sent} requests successfully sent.\033[0m")
             lock.release()
             
             sock.close()
@@ -49,7 +49,7 @@ def saldiri_fonksiyonu():
             lock.acquire()
             sent += 1
             if sent % 50 == 0:
-                print("\033[91m[!] Sunucu cevap vermeyi kesti veya port tıkandı!\033[92m")
+                print("\033[91m[!] Server stopped responding or port is blocked!\033[92m")
             lock.release()
             time.sleep(0.1)
 
@@ -62,5 +62,5 @@ while True:
     try:
         time.sleep(1)
     except KeyboardInterrupt:
-        print("\n\033[91m[-] Saldırı kullanıcı tarafından durduruldu.\033[0m")
+        print("\n\033[91m[-] Attack stopped by user.\033[0m")
         sys.exit()
