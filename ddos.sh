@@ -7,7 +7,6 @@ clear
 cd /home/desktop/ddos_files
 echo "TCP-1"
 echo "ALL-2"
-echo "RIPPER-3"
 read -p "Choose:" sc
 case $sc in
   1)
